@@ -1,3 +1,12 @@
+let firstCard =null;
+let secondCard= null;
+let lockBoard= false;
+let moves =0;
+let matchedCount=0;
+
+
+
+
 let dimension= 150;
 let imgStart= Math.trunc(Math.random()*100);
 
