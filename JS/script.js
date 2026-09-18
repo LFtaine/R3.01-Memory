@@ -14,6 +14,7 @@ let images=[];
 for(let i=0; i<8;i++){
     imgStart= Math.trunc(Math.random()*100);
     images[i]=`https://picsum.photos/${imgStart}/${dimension}`;
+
 }
 
 let cards= [...images,...images];
@@ -34,14 +35,23 @@ function initGame(){
 
 
 function creation_images(url){
-    let img=document.createElement("div");
-    img.className="card";
-    img.style.backgroundImage=`url(${url})`;
-    img.dataset.value=url;
-    img.role="button";
-    img.tabIndex='0';
+    let card=document.createElement("div");
+    card.className="card";
+    card.style.backgroundImage=`url(${url})`;
+    card.dataset.value=url;
+    card.role="button";
+    card.tabIndex='0';
+    card.addEventListener('click', () => handleCardClick(card));
 
-    contenant.appendChild(img);
+    contenant.appendChild(card);
 }
+
+function handleCardClick(card){
+    if(lockBoard){
+        return;
+    }
+
+}
+
 
 initGame();

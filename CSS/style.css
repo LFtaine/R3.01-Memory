@@ -3,3 +3,16 @@
     height: 150px;
     background-size: cover;
 }
+
+body,h1{
+    text-align: center;
+}
+
+
+#contenant{
+    max-width: 40em;
+    display: grid;
+    grid-template-columns: repeat(4,10em);
+    grid-template-rows: repeat(4,10em);
+    margin:  auto;
+}
