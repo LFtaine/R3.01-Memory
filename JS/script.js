@@ -28,8 +28,11 @@ function creation_images(url){
     let img=document.createElement("div");
     img.className="card";
     img.style.backgroundImage=`url(${url})`;
-    contenant.appendChild(img);
+    img.dataset.value=url;
+    img.role="button";
+    img.tabIndex='0';
 
+    contenant.appendChild(img);
 }
 
 initGame();
