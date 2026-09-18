@@ -8,6 +8,9 @@ for(let i=0; i<8;i++){
 
 let cards= [...images,...images];
 
-function shuffle(array){
-    
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // On échange les deux places
+    }
 }
