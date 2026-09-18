@@ -4,7 +4,7 @@ let lockBoard= false;
 let moves =0;
 let matchedCount=0;
 
-
+ 
 
 
 let dimension= 150;
