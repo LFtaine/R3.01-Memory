@@ -7,13 +7,14 @@ let matchedCount = 0;
 let dimension = 150;
 let imgStart = 0;
 
-let rematch= false;
+let rematch = false;
 let cards = [];
 
 let timer = null;
 let elapsedSeconds = 0;
 
 const contenant = document.getElementById("contenant");
+contenant.style.display="none";
 const play = document.getElementById("play");
 const temps = document.getElementById("temps");
 
@@ -48,19 +49,15 @@ function shuffle(array) {
     }
 }
 
-
-
-
-
+// --- MODIFICATION ICI : Utilisation de l'ID Picsum pour garder la même image ---
 function createImages() {
     const images = [];
     for (let i = 0; i < 8; i++) {
-        imgStart = Math.trunc(Math.random() * 100);
-        images.push(`https://picsum.photos/${imgStart}/${dimension}`);
+        const randomId = Math.trunc(Math.random() * 100) + 1;
+        images.push(`https://picsum.photos/id/${randomId}/${dimension}/${dimension}`);
     }
     return images;
 }
-
 
 function hideCard(card) {
     card.style.backgroundColor = '#ffaa00';
@@ -87,6 +84,7 @@ function creation_images(url) {
 }
 
 function initGame() {
+    contenant.style.display = 'grid';
     while(contenant.firstChild){
         contenant.removeChild(contenant.firstChild);
     }
@@ -142,7 +140,7 @@ function handleCardClick(card) {
             }
 
             actualize();
-        }, 1000);
+        }, 700);
     }
 }
 
