@@ -10,14 +10,36 @@ let imgStart = 0;
 let rematch= false;
 let cards = [];
 
+let timer = null;
+let elapsedSeconds = 0;
+
 const contenant = document.getElementById("contenant");
 const play = document.getElementById("play");
+const temps = document.getElementById("temps");
 
 play.addEventListener('click', function () {
     play.style.display = 'none';
     initGame();
 });
 
+let temps_total;
+
+function startTimer() {
+    clearInterval(timer);
+    elapsedSeconds = 0;
+    temps.textContent = `Temps écoulé: 0 secondes`;
+
+    timer = setInterval(() => {
+        elapsedSeconds++;
+        temps_total = elapsedSeconds;
+        temps.textContent = `Temps écoulé: ${elapsedSeconds} secondes`;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timer);
+    timer = null;
+}
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -82,7 +104,7 @@ function initGame() {
 
     shuffle(cards);
     cards.forEach(creation_images);
-
+    startTimer();
     actualize();
 }
 
@@ -137,10 +159,9 @@ function actualize() {
 }
 
 function victoire() {
+    stopTimer();
 
-    let bravo=document.createElement("p");
-    bravo.textContent = "Bravo ! Vous avez gagné !";
-    contenant.appendChild(bravo);
+    temps.textContent = `Bravo ! Vous avez gagné en ${temps_total} secondes!`;
 
     play.style.display = 'block';
     play.textContent = 'Rejouer';
