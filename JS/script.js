@@ -131,6 +131,11 @@ function actualize() {
 }
 
 function victoire() {
+
+    let bravo=document.createElement("p");
+    bravo.textContent = "Bravo ! Vous avez gagné !";
+    contenant.appendChild(bravo);
+
     play.style.display = 'block';
     play.textContent = 'Rejouer';
     lockBoard = true;
