@@ -1,14 +1,23 @@
 ﻿let firstCard = null;
 let secondCard = null;
-let lockBoard = false;
+let lockBoard = true;
 let moves = 0;
 let matchedCount = 0;
 
 let dimension = 150;
 let imgStart = 0;
 
+let rematch= false;
+let cards = [];
+
 const contenant = document.getElementById("contenant");
 const play = document.getElementById("play");
+
+play.addEventListener('click', function () {
+    play.style.display = 'none';
+    initGame();
+});
+
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -25,6 +34,7 @@ function createImages() {
     }
     return images;
 }
+
 
 function hideCard(card) {
     card.style.backgroundColor = 'black';
@@ -49,17 +59,24 @@ function creation_images(url) {
 }
 
 function initGame() {
+    while(contenant.firstChild){
+        contenant.removeChild(contenant.firstChild);
+    }
+
     firstCard = null;
     secondCard = null;
     lockBoard = false;
     moves = 0;
     matchedCount = 0;
 
-    contenant.innerHTML = '';
-    const images = createImages();
-    const cards = [...images, ...images];
+    if(rematch === false){
+        let images = createImages();
+        cards = [...images, ...images];
+    }
+
     shuffle(cards);
     cards.forEach(creation_images);
+
     actualize();
 }
 
@@ -117,11 +134,5 @@ function victoire() {
     play.style.display = 'block';
     play.textContent = 'Rejouer';
     lockBoard = true;
+    rematch = true;
 }
-
-play.addEventListener('click', function () {
-    play.style.display = 'none';
-    initGame();
-});
-
-initGame();
