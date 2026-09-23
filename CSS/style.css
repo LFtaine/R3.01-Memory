@@ -1,40 +1,281 @@
-.card {
-    width: 150px;
-    height: 150px;
-    background-size: cover;
-    border-radius: 10px;
-    border: 2px solid #040404;
+/* Reset et variables globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body,h1{
+:root {
+    --primary-color: #ffb752;
+    --secondary-color: #4CAF50;
+    --bg-color: #f9ffef;
+    --text-color: #040404;
+    --border-radius: 10px;
+    --main-border-radius: 50px;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
+/* Body et éléments généraux */
+body {
+    background-color: var(--bg-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
     text-align: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0;
+}
 
-#contenant{
-    max-width: 40em;
+/* Main */
+main {
+    flex: 1;
+    background-color: var(--primary-color);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg);
+    border-radius: var(--main-border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Conteneur de grille (cartes) */
+#contenant {
     display: grid;
-    grid-template-columns: repeat(4,10em);
-    grid-template-rows: repeat(4,10em);
-    margin:  auto;
+    gap: var(--spacing-md);
+    max-width: 100%;
+    width: auto;
 }
 
-#affichage{
-    margin: 5em;
+/* Responsive grille - Par défaut 2x2 pour mobile */
+#contenant {
+    grid-template-columns: repeat(2, 70px);
+    grid-template-rows: repeat(2, 70px);
 }
 
-#play{
-    background-color: #4CAF50;
+.card {
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--text-color);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-body{
-    background-color: #f9ffef;  
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-main{
-    background-color: #ffb752;
-    padding:5em;
-    margin-left:15em;
-    margin-right:15em;
-    border-radius: 50px;
+.card:active {
+    transform: scale(0.95);
+}
+
+/* Affichage des informations */
+#affichage {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-lg);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius);
+    min-width: 250px;
+}
+
+#temps {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+#play {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius);
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#play:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#play:active {
+    transform: translateY(0);
+}
+
+#moves, #matched {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* RESPONSIVE - Petit écran (mobile) */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+
+    main {
+        padding: var(--spacing-md);
+        margin: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    #contenant {
+        grid-template-columns: repeat(2, 60px);
+        grid-template-rows: repeat(2, 60px);
+        gap: var(--spacing-sm);
+    }
+
+    .card {
+        width: 60px;
+        height: 60px;
+    }
+
+    #affichage {
+        min-width: 200px;
+        padding: var(--spacing-md);
+    }
+
+    #temps {
+        font-size: 1.2rem;
+    }
+
+    #play {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: 1rem;
+    }
+}
+
+/* RESPONSIVE - Écran moyen (tablette) */
+@media (min-width: 481px) and (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-md);
+    }
+
+    #contenant {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+        gap: var(--spacing-md);
+    }
+
+    .card {
+        width: 80px;
+        height: 80px;
+    }
+
+    #affichage {
+        min-width: 280px;
+    }
+}
+
+/* RESPONSIVE - Écran large (desktop) */
+@media (min-width: 769px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    main {
+        padding: var(--spacing-xl);
+        margin: var(--spacing-lg) auto;
+        max-width: 600px;
+    }
+
+    #contenant {
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: repeat(4, 100px);
+        gap: var(--spacing-md);
+    }
+
+    .card {
+        width: 100px;
+        height: 100px;
+    }
+
+    #affichage {
+        min-width: 300px;
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Impression (optionnel) */
+@media print {
+    body, main {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    header, footer {
+        display: none;
+    }
+}
+
+/* Accessibilité - Préfère les animations réduites */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    #play:hover {
+        transform: none;
+    }
 }

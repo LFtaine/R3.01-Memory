@@ -26,6 +26,10 @@ function shuffle(array) {
     }
 }
 
+
+
+
+
 function createImages() {
     const images = [];
     for (let i = 0; i < 8; i++) {
@@ -37,8 +41,10 @@ function createImages() {
 
 
 function hideCard(card) {
-    card.style.backgroundColor = 'black';
-    card.style.backgroundImage = 'none';
+    card.style.backgroundColor = '#ffaa00';
+    card.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23ffb100'/%3E%3Cpath d='M0 200 L200 0 L200 200 Z' fill='%23ffb800'/%3E%3C/svg%3E\")";
+    card.style.backgroundAttachment = 'scroll';
+    card.style.backgroundPosition = 'center';
 }
 
 function revealCard(card) {
